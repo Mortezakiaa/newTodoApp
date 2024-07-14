@@ -4,7 +4,7 @@ import { TTodoCard } from "@/Types/Types";
 import { RiTodoLine } from "react-icons/ri";
 
 const TodoCard: React.FC<TTodoCard> = ({ name, data }) => {
-  const { setStatus, DragEnd, DragOver } = useUpdateTodo();
+  const { DragEnd, DragOver, setTodo } = useUpdateTodo();
 
   return (
     <div className="w-full p-6 md:w-1/2 xl:w-1/3" data-status={name}>
@@ -15,15 +15,11 @@ const TodoCard: React.FC<TTodoCard> = ({ name, data }) => {
         <h2 className="font-bold text-gray-600 uppercase">{name}</h2>
       </div>
       <div
-        className="flex pt-1 flex-col gap-2 min-h-10 bg-stone-300 p-1"
+        className="flex pt-1 flex-col cursor-move gap-2 min-h-10 bg-stone-300 p-2"
         data-status={name}
-        onDragEnter={(e) => {
-          console.log("e", e.target.getAttribute("data-status"));
-          setStatus(e.target.getAttribute("data-status"));
-        }}
-        onDrop={(e) => {
-          console.log("d", e.target.getAttribute("data-status"));
-          // setStatus(e.target.getAttribute("data-status"));
+        onDrop={(e: any) => {
+          const st = e.target.getAttribute("data-status") as string;
+          DragEnd(st);
         }}
         onDragOver={DragOver}
       >
@@ -33,8 +29,8 @@ const TodoCard: React.FC<TTodoCard> = ({ name, data }) => {
               <div
                 data-status={name}
                 draggable
-                onDragEnd={() => {
-                  DragEnd(item);
+                onDragStart={() => {
+                  setTodo(item);
                 }}
                 className="bg-white p-2 border-transparent rounded-lg shadow-xl"
                 key={item._id}

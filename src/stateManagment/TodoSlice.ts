@@ -2,7 +2,7 @@ import { TTask } from "@/Types/Types";
 import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "./store";
 
-type T = { todos: TTask[] };
+type T = { todos: TTask[]; updateTodo: TTask };
 
 const initialState: T = {
   todos: [
@@ -13,13 +13,16 @@ const initialState: T = {
     { _id: "5", title: "test5", status: "todo" },
     { _id: "6", title: "test6", status: "in progress" },
   ],
+  updateTodo: { _id: "", status: "done", title: "" },
 };
 
 const TodoSlice = createSlice({
   name: "todo",
   initialState,
   reducers: {
-    addTodo: (state, action) => {},
+    addTodo: (state, action) => {
+      state.todos.push(action.payload);
+    },
     updateTodoStatus: (state, action) => {
       state.todos = state.todos.map((i) => {
         if (i._id === action.payload._id) {
@@ -28,9 +31,12 @@ const TodoSlice = createSlice({
         return i;
       });
     },
+    setUpdate: (state, action) => {
+      state.updateTodo = action.payload;
+    },
   },
 });
 
 export default TodoSlice.reducer;
-export const { addTodo, updateTodoStatus } = TodoSlice.actions;
+export const { addTodo, updateTodoStatus, setUpdate } = TodoSlice.actions;
 export const TodoSelector = (store: RootState) => store.todoReducer;

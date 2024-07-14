@@ -1,21 +1,29 @@
-import { updateTodoStatus } from "@/stateManagment/TodoSlice";
+"use client";
+import {
+  setUpdate,
+  TodoSelector,
+  updateTodoStatus,
+} from "@/stateManagment/TodoSlice";
 import { TTask } from "@/Types/Types";
-import {  useState } from "react";
+import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 
 export default function useUpdateTodo() {
-  const [status, setStatus] = useState("");
   const dispatch = useDispatch();
+  const { updateTodo } = useSelector(TodoSelector);
 
-  const DragEnd = (e: TTask) => {
-    console.log("status", status);
-    if (!status) return;
-    dispatch(updateTodoStatus({ _id: e._id, status: status }));
+  const setTodo = (i: TTask) => {
+    dispatch(setUpdate(i));
   };
 
-  const DragOver = (e) => {
+  const DragEnd = (e: string) => {
+    if (!e) return;
+    dispatch(updateTodoStatus({ _id: updateTodo._id, status: e }));
+  };
+
+  const DragOver = (e: any) => {
     e.preventDefault();
   };
 
-  return { setStatus, DragEnd, DragOver };
+  return { DragEnd, DragOver, setTodo };
 }
