@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Main from "@/components/Main";
+import MainLayout from "@/components/MainLayout";
 
 export const metadata: Metadata = {
   title: "todo app",
@@ -15,7 +15,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Main>{children}</Main>
+        <MainLayout>{children}</MainLayout>
       </body>
     </html>
   );

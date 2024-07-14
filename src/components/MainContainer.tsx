@@ -38,8 +38,8 @@ const MainContainer: React.FC<TChildren> = ({ children }) => {
             </div>
           </div>
         </nav>
-        <section className="mt-[37px] w-[100%]">
-          <div className="flex-1 pb-24 mt-12 bg-gray-100 main-content md:mt-2 md:pb-5 h-[100%]">
+        <section className="mt-[40px] w-[100%]">
+          <div className="flex-1 pb-24 mt-12 main-content md:mt-2 md:pb-5">
             {children}
           </div>
         </section>
