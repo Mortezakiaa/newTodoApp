@@ -29,7 +29,7 @@ export default function page() {
         </div>
         <div className="flex items-center justify-between px-2 mt-2 bg-teal-600 rounded-md w-[200px]">
           <RadioButton
-            Checked={todo.status === "DailyTodo"}
+            Checked={todo.status === "todo"}
             ChangeStatus={(e) => ChangeStatus(e)}
             Value={"todo"}
           />
@@ -37,7 +37,7 @@ export default function page() {
         </div>
         <div className="flex items-center justify-between px-2 mt-2 bg-cyan-800 rounded-md w-[200px]">
           <RadioButton
-            Checked={todo.status === "WeeklyTodo"}
+            Checked={todo.status === "in progress"}
             ChangeStatus={(e) => ChangeStatus(e)}
             Value={"in progress"}
           />
@@ -45,7 +45,7 @@ export default function page() {
         </div>
         <div className="flex items-center justify-between px-2 mt-2 bg-green-700 rounded-md w-[200px]">
           <RadioButton
-            Checked={todo.status === "MonthlyTodo"}
+            Checked={todo.status === "done"}
             ChangeStatus={(e) => ChangeStatus(e)}
             Value={"done"}
           />
