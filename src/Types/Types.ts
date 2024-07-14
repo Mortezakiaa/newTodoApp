@@ -1,10 +1,11 @@
+export type Status = "todo" | "in progress" | "done";
 export interface TTask {
   _id: string;
   title: string;
-  status: "todo" | "in progress" | "done";
+  status: Status;
 }
 export interface TTodoCard {
-  name: string;
+  name: Status;
   data: TTask[];
 }
 export type TChildren = { children: React.ReactNode };
