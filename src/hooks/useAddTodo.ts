@@ -19,6 +19,7 @@ export default function useAddTodo() {
   };
 
   const SaveTodos = () => {
+    if(!todo.title) return toast.error('title cant be blank!!')
     const id = Math.floor(Math.random() * 1000000000).toString();
     dispatch(addTodo({ ...todo, _id: id }));
     setTodo({ _id: "", status: "todo", title: "" });

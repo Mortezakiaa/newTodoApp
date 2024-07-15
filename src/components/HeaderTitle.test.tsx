@@ -6,5 +6,6 @@ describe("test header title", () => {
     render(<HeaderTitle text="test example" />);
     const headerTitle = screen.getByRole("heading");
     expect(headerTitle).toBeInTheDocument();
+    expect(headerTitle.innerHTML).toBe("test example");
   });
 });

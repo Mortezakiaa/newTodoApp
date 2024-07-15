@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import RadioButton from "./RadioButton";
 
 describe("radio Button", () => {
@@ -9,11 +9,12 @@ describe("radio Button", () => {
     const radio = screen.getByRole("radio");
     expect(radio).toBeInTheDocument();
   });
-  test("click test", () => {
-    const change = jest.fn();
-    render(<RadioButton ChangeStatus={change} Checked={false} Value="test" />);
-    const input = screen.getByRole("radio");
-    fireEvent.change(input , {value:{target:true}});
-    expect(input).toHaveBeenCalledTimes(1);
+  test("add diffrent property", () => {
+    const { getByRole } = render(
+      <RadioButton ChangeStatus={() => {}} Checked={true} Value="test1" />
+    );
+    const radio = getByRole("radio");
+    expect(radio).toBeChecked();
+    expect(radio.id).toBe("test1");
   });
 });
